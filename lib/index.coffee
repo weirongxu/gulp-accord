@@ -40,4 +40,6 @@ module.exports = (lang, opts = {}) ->
           file.contents = new Buffer(res.result)
           if res.sourcemap then apply_sourcemap(file, res.sourcemap)
         .done (-> cb(null, file)), (err) ->
+          gutil.log(err)
           cb(new gutil.PluginError(PLUGIN_NAME, err))
+  , failures: true

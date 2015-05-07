@@ -28,7 +28,9 @@ describe 'basic', ->
   it 'should handle accord compile errors', (done) ->
     p = path.join(test_path, 'compile-error')
     node.call(run, "gulp", { cwd: p })
-      .done(done, (-> done()))
+      .done (log)->
+        log.should.match(/Error/)
+        done()
 
   it 'should handle plugin input errors', (done) ->
     p = path.join(test_path, 'no-language-support')
